@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Form Pendaftaran Seminar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800&family=Outfit:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <form class="card" id="seminarForm" action="#" method="post">
+
+    <!-- HEAD -->
+    <header class="head">
+      <h1>Form Pendaftaran Seminar</h1>
+      <p>Silahkan isi data diri untuk mendaftar seminar</p>
+    </header>
+
+    <div class="body">
+      <div class="grid">
+
+        <!-- 1. Full name : text -->
+        <div>
+          <label class="lbl" for="fullname">Full name</label>
+          <input type="text" id="fullname" name="fullname" placeholder="Nama lengkap" required>
+        </div>
+
+        <!-- 2. E-mail : email -->
+        <div>
+          <label class="lbl" for="email">E-mail</label>
+          <input type="email" id="email" name="email" placeholder="nama@email.com" required>
+        </div>
+
+        <!-- 3. Mobile Number : tel -->
+        <div>
+          <label class="lbl" for="phone">Mobile Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="08xxxxxxxxxx" pattern="[0-9+\- ]{8,16}" required>
+        </div>
+
+        <!-- 4. Study programs : select -->
+        <div>
+          <label class="lbl" for="program">Study programs</label>
+          <select id="program" name="program" required>
+            <option value="" selected disabled>Pilih program studi</option>
+            <option>Teknik Informatika</option>
+            <option>Sistem Informasi</option>
+            <option>Teknik Komputer</option>
+            <option>Manajemen Informatika</option>
+            <option>Desain Komunikasi Visual</option>
+            <option>Lainnya</option>
+          </select>
+        </div>
+
+        <!-- 5. Types of participants : radio -->
+        <fieldset class="full">
+          <legend class="group-title">Types of participants</legend>
+          <div class="chips">
+            <label class="chip"><input type="radio" name="participant" value="Mahasiswa" required><span>Mahasiswa</span></label>
+            <label class="chip"><input type="radio" name="participant" value="Pelajar"><span>Pelajar</span></label>
+            <label class="chip"><input type="radio" name="participant" value="Dosen / Guru"><span>Dosen / Guru</span></label>
+            <label class="chip"><input type="radio" name="participant" value="Umum"><span>Umum</span></label>
+          </div>
+        </fieldset>
+
+        <!-- 6. Seminar topics : checkbox -->
+        <fieldset class="full">
+          <legend class="group-title">Seminar topics</legend>
+          <div class="chips">
+            <label class="chip"><input type="checkbox" name="topics" value="Mobile Development"><span>Mobile Development</span></label>
+            <label class="chip"><input type="checkbox" name="topics" value="Web Development"><span>Web Development</span></label>
+            <label class="chip"><input type="checkbox" name="topics" value="UI/UX Design"><span>UI/UX Design</span></label>
+            <label class="chip"><input type="checkbox" name="topics" value="Artificial Intelligence"><span>Artificial Intelligence</span></label>
+            <label class="chip"><input type="checkbox" name="topics" value="Cyber Security"><span>Cyber Security</span></label>
+          </div>
+        </fieldset>
+
+        <!-- 7. Date of attendance : date -->
+        <div class="full">
+          <label class="lbl" for="date">Date of attendance</label>
+          <input type="date" id="date" name="date" required>
+        </div>
+
+        <!-- 8. Note : textarea -->
+        <div class="full">
+          <label class="lbl" for="note">Note</label>
+          <textarea id="note" name="note" placeholder="Pertanyaan atau catatan untuk panitia (opsional)"></textarea>
+        </div>
+      </div>
+
+      <div class="actions">
+        <!-- 9. Register button : submit -->
+        <button type="submit" class="btn btn-submit">Register</button>
+        <!-- 10. Reset Button : reset -->
+        <button type="reset" class="btn btn-reset">Reset</button>
+      </div>
+
+      <div class="status" id="status" role="status">Pendaftaran berhasil. Sampai jumpa di seminar!</div>
+    </div>
+  </form>
+
+  <script>
+    const form = document.getElementById('seminarForm');
+    const status = document.getElementById('status');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      status.classList.add('show');
+    });
+    form.addEventListener('input', () => status.classList.remove('show'));
+    form.addEventListener('reset', () => status.classList.remove('show'));
+  </script>
+</body>
+</html>

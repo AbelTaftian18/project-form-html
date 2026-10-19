@@ -1,0 +1,212 @@
+    :root {
+  --paper: #dfe5ff;      /* latar halaman: biru lavender */
+  --card: #fbfaff;       /* badan kartu */
+  --ink: #1a1d4d;        /* tinta navy */
+  --pink: #ff5c8a;       /* aksen utama */
+  --lemon: #f7e35a;      /* aksen sekunder */
+  --mint: #7fe3c1;       /* aksen konfirmasi */
+  --line: 3px solid var(--ink);
+  --font-head: "Unbounded", "Trebuchet MS", sans-serif;
+  --font-body: "Outfit", "Segoe UI", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 40px 16px;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--paper);
+  /* pola titik ala cetakan risograph */
+  background-image: radial-gradient(var(--ink) 0.8px, transparent 0.8px);
+  background-size: 22px 22px;
+}
+
+/* ===== KARTU FORM ===== */
+.card {
+  width: min(760px, 100%);
+  background: var(--card);
+  border: var(--line);
+  border-radius: 22px;
+  box-shadow: 10px 10px 0 var(--ink);
+  overflow: hidden;
+}
+
+/* ===== HEAD / JUDUL ===== */
+.head {
+  background: var(--pink);
+  border-bottom: var(--line);
+  padding: 30px 40px 28px;
+}
+
+.head h1 {
+  margin: 0 0 10px;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+}
+
+.head p {
+  margin: 0;
+  display: inline-block;
+  background: var(--lemon);
+  border: var(--line);
+  border-radius: 10px;
+  padding: 6px 14px;
+  font-weight: 500;
+  font-size: 1rem;
+  transform: rotate(-1deg);
+}
+
+/* ===== ISI FORM ===== */
+.body { padding: 34px 40px 40px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 22px 20px;
+}
+.full { grid-column: 1 / -1; }
+
+label.lbl, .group-title {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+input[type="text"], input[type="email"], input[type="tel"],
+input[type="date"], select, textarea {
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: #fff;
+  border: var(--line);
+  border-radius: 12px;
+  padding: 11px 14px;
+  box-shadow: 4px 4px 0 var(--ink);
+  transition: transform .12s, box-shadow .12s, background .12s;
+}
+input::placeholder, textarea::placeholder { color: #8b8fb8; }
+textarea { min-height: 96px; resize: vertical; }
+
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+  outline: none;
+  background: #fffde0;
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 var(--pink);
+}
+
+select {
+  appearance: none;
+  background-image: linear-gradient(45deg, transparent 50%, var(--ink) 50%),
+                    linear-gradient(135deg, var(--ink) 50%, transparent 50%);
+  background-position: calc(100% - 22px) 55%, calc(100% - 16px) 55%;
+  background-size: 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 40px;
+}
+
+/* ===== RADIO & CHECKBOX SEBAGAI CHIP ===== */
+fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 10px; }
+
+.chip { position: relative; cursor: pointer; }
+.chip input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+.chip span {
+  display: inline-block;
+  padding: 8px 16px;
+  background: #fff;
+  border: var(--line);
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 0.93rem;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: transform .12s, box-shadow .12s, background .12s;
+}
+.chip:hover span { background: #f1f2ff; }
+.chip input:focus-visible + span { outline: 3px dashed var(--pink); outline-offset: 3px; }
+
+/* radio terpilih: pink */
+.chip input[type="radio"]:checked + span {
+  background: var(--pink);
+  color: #fff;
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
+}
+/* checkbox terpilih: mint + tanda centang */
+.chip input[type="checkbox"]:checked + span {
+  background: var(--mint);
+  transform: translate(3px, 3px);
+  box-shadow: 0 0 0 var(--ink);
+}
+.chip input[type="checkbox"]:checked + span::before {
+  content: "✓ ";
+  font-weight: 800;
+}
+
+/* ===== TOMBOL ===== */
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 34px;
+  padding-top: 28px;
+  border-top: 3px dashed var(--ink);
+}
+
+.btn {
+  font: inherit;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 13px 30px;
+  border: var(--line);
+  border-radius: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  box-shadow: 5px 5px 0 var(--ink);
+  transition: transform .1s, box-shadow .1s;
+}
+.btn:hover { transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+.btn:active { transform: translate(5px, 5px); box-shadow: 0 0 0 var(--ink); }
+.btn:focus-visible { outline: 3px dashed var(--ink); outline-offset: 3px; }
+.btn-submit { background: var(--lemon); }
+.btn-reset  { background: #fff; }
+
+.status {
+  display: none;
+  margin-top: 20px;
+  background: var(--mint);
+  border: var(--line);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.status.show { display: block; }
+
+/* ===== RESPONSIF ===== */
+@media (max-width: 640px) {
+  .head { padding: 24px 22px; }
+  .body { padding: 26px 22px 30px; }
+  .grid { grid-template-columns: 1fr; }
+  .btn { flex: 1; padding-inline: 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
